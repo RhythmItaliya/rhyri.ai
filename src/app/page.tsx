@@ -12,11 +12,12 @@ const HomePage = async () => {
 
     const userName = session.user?.name || 'User';
     const userImage = session.user?.image || 'https://ui-avatars.com/api/?name=User';
+    const userEmail = session.user?.email || '';
 
     return (
         <>
             <main className="max-w-3xl mx-auto p-6 flex-1">
-                <Header user={{ name: userName, image: userImage }} />
+                <Header user={{ name: userName, image: userImage, email: userEmail }} />
                 <div className="text-gray-700">You are signed in with Google.</div>
             </main>
             <Footer />

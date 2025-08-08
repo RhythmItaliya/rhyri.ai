@@ -4,6 +4,8 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Input from '../ui/Input';
+import Button from '../ui/Button';
 import { createUserWithPassword } from '@/app/_actions/users';
 
 export default function SignUpPage() {
@@ -101,85 +103,45 @@ export default function SignUpPage() {
                     )}
 
                     <form onSubmit={handleEmailSignUp} className="space-y-6">
-                        <div>
-                            <label
-                                htmlFor="name"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Full Name
-                            </label>
-                            <input
-                                id="name"
-                                type="text"
-                                required
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your full name"
-                            />
-                        </div>
+                        <Input
+                            label="Full Name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your full name"
+                            required
+                        />
 
-                        <div>
-                            <label
-                                htmlFor="email"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Email
-                            </label>
-                            <input
-                                id="email"
-                                type="email"
-                                required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your email"
-                            />
-                        </div>
+                        <Input
+                            label="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                        />
 
-                        <div>
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                type="password"
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your password"
-                            />
-                        </div>
+                        <Input
+                            label="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter your password"
+                            required
+                        />
 
-                        <div>
-                            <label
-                                htmlFor="confirmPassword"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Confirm Password
-                            </label>
-                            <input
-                                id="confirmPassword"
-                                type="password"
-                                required
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Confirm your password"
-                            />
-                        </div>
+                        <Input
+                            label="Confirm Password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Confirm your password"
+                            required
+                        />
 
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-                        >
+                        <Button type="submit" disabled={loading} className="w-full">
                             {loading ? 'Creating account...' : 'Create account'}
-                        </button>
+                        </Button>
                     </form>
 
                     <div className="mt-6">
@@ -195,11 +157,12 @@ export default function SignUpPage() {
                         </div>
 
                         <div className="mt-6">
-                            <button
+                            <Button
                                 type="button"
                                 onClick={handleGoogleSignUp}
                                 disabled={loading}
-                                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                                variant="secondary"
+                                className="w-full"
                             >
                                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                     <path
@@ -220,7 +183,7 @@ export default function SignUpPage() {
                                     />
                                 </svg>
                                 Sign up with Google
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </div>
