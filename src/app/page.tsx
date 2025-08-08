@@ -1,14 +1,17 @@
-import { auth } from '@/auth';
+import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
 import Header from './ui/Header';
 import Footer from '@/app/ui/Footer';
+import { authOptions } from '@/lib/auth.config';
+
+export const dynamic = 'force-dynamic';
 
 const HomePage = async () => {
-     const session = await auth();
+     const session = await getServerSession(authOptions);
      if (!session) return notFound();
 
-     const userName = session.user.name || 'User';
-     const userImage = session.user.image || 'https://ui-avatars.com/api/?name=User';
+     const userName = session.user?.name || 'User';
+     const userImage = session.user?.image || 'https://ui-avatars.com/api/?name=User';
 
      return (
           <>

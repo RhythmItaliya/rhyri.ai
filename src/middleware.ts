@@ -1,38 +1,47 @@
-import NextAuth from 'next-auth';
 import { NextResponse } from 'next/server';
+import { withAuth } from 'next-auth/middleware';
 
-import { authConfig } from '@/lib/auth.config';
 import { API_AUTH_PREFIX, AUTH_ROUTES, PROTECTED_ROUTES } from '@/routes';
 
-export const { auth } = NextAuth(authConfig);
+export default withAuth(
+    (req) => {
+        const pathname = req.nextUrl.pathname;
 
-export default auth((req) => {
-     const pathname = req.nextUrl.pathname;
+        const isAuth = Boolean(req.nextauth?.token);
+        const isAccessingApiAuthRoute = pathname.startsWith(API_AUTH_PREFIX);
+        const isAccessingAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
+        const isAccessingProtectedRoute = PROTECTED_ROUTES.some((route) =>
+            pathname.startsWith(route),
+        );
 
-     // manage route protection
-     const isAuth = req.auth;
+        if (isAccessingApiAuthRoute) {
+            return NextResponse.next();
+        }
 
-     const isAccessingApiAuthRoute = pathname.startsWith(API_AUTH_PREFIX);
-     const isAccessingAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
-     const isAccessingProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
+        if (isAccessingAuthRoute) {
+            if (isAuth) {
+                const url = req.nextUrl.clone();
+                url.pathname = PROTECTED_ROUTES[0];
+                return NextResponse.redirect(url);
+            }
+            return NextResponse.next();
+        }
 
-     if (isAccessingApiAuthRoute) {
-          return NextResponse.next();
-     }
+        if (!isAuth && isAccessingProtectedRoute) {
+            const url = req.nextUrl.clone();
+            url.pathname = AUTH_ROUTES[0];
+            return NextResponse.redirect(url);
+        }
 
-     if (isAccessingAuthRoute) {
-          if (isAuth) {
-               return NextResponse.redirect(new URL('/', req.url));
-          }
-
-          return NextResponse.next();
-     }
-
-     if (!isAuth && isAccessingProtectedRoute) {
-          return NextResponse.redirect(new URL('/login', req.url));
-     }
-});
+        return NextResponse.next();
+    },
+    {
+        callbacks: {
+            authorized: () => true,
+        },
+    },
+);
 
 export const config = {
-     matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
