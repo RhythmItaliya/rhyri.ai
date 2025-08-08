@@ -7,21 +7,21 @@ import { authOptions } from '@/lib/auth.config';
 export const dynamic = 'force-dynamic';
 
 const HomePage = async () => {
-     const session = await getServerSession(authOptions);
-     if (!session) return notFound();
+    const session = await getServerSession(authOptions);
+    if (!session) return notFound();
 
-     const userName = session.user?.name || 'User';
-     const userImage = session.user?.image || 'https://ui-avatars.com/api/?name=User';
+    const userName = session.user?.name || 'User';
+    const userImage = session.user?.image || 'https://ui-avatars.com/api/?name=User';
 
-     return (
-          <>
-               <main className="max-w-3xl mx-auto p-6 flex-1">
-                    <Header user={{ name: userName, image: userImage }} />
-                    <div className="text-gray-700">You are signed in with Google.</div>
-               </main>
-               <Footer />
-          </>
-     );
+    return (
+        <>
+            <main className="max-w-3xl mx-auto p-6 flex-1">
+                <Header user={{ name: userName, image: userImage }} />
+                <div className="text-gray-700">You are signed in with Google.</div>
+            </main>
+            <Footer />
+        </>
+    );
 };
 
 export default HomePage;
