@@ -34,3 +34,14 @@ model User {
   password      String?
   accounts      Account[]
 }
+
+model Admin {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String?
+  accessUrl     String?
+}

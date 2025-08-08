@@ -127,7 +127,7 @@ export default function SettingsModal({ isOpen, onClose, user }: SettingsModalPr
                 {!hasPassword && (
                     <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
                         <p className="text-sm text-blue-800">
-                            You don't have a password set. Add one to sign in with email and
+                            You don&apos;t have a password set. Add one to sign in with email and
                             password.
                         </p>
                     </div>
