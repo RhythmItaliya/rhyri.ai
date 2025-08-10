@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
 import Header from './ui/Header';
 import Footer from '@/app/ui/Footer';
-import { authOptions } from '@/lib/auth.config';
+import { authOptions } from '@/config/auth.config';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,8 +16,8 @@ const HomePage = async () => {
 
     return (
         <>
+            <Header user={{ name: userName, image: userImage, email: userEmail }} />
             <main className="max-w-3xl mx-auto p-6 flex-1">
-                <Header user={{ name: userName, image: userImage, email: userEmail }} />
                 <div className="text-gray-700">You are signed in with Google.</div>
             </main>
             <Footer />

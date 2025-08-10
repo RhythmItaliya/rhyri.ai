@@ -1,6 +1,6 @@
 'use server';
 
-import db from '@/lib/db';
+import db from '@/server/db';
 import bcrypt from 'bcryptjs';
 
 export async function fetchAdminWithEmail(email: string) {

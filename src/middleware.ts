@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { withAuth } from 'next-auth/middleware';
 
-import { API_AUTH_PREFIX, AUTH_ROUTES, PROTECTED_ROUTES } from '@/routes';
+import { API_AUTH_PREFIX, AUTH_ROUTES, PROTECTED_ROUTES } from '@/constants/routes';
 
 export default withAuth(
     (req) => {

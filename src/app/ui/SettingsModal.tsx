@@ -113,20 +113,20 @@ export default function SettingsModal({ isOpen, onClose, user }: SettingsModalPr
                 </div>
 
                 {error && (
-                    <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                    <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded">
                         {error}
                     </div>
                 )}
 
                 {success && (
-                    <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded">
                         {success}
                     </div>
                 )}
 
                 {!hasPassword && (
-                    <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
-                        <p className="text-sm text-blue-800">
+                    <div className="mb-4 p-3 bg-primary-50 border border-primary-200 rounded">
+                        <p className="text-sm text-primary-800">
                             You don&apos;t have a password set. Add one to sign in with email and
                             password.
                         </p>

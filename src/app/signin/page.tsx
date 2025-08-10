@@ -63,7 +63,7 @@ export default function SignInPage() {
                     <h2 className="text-3xl font-bold text-gray-900">Sign in</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Or{' '}
-                        <Link href="/signup" className="text-blue-600 hover:text-blue-500">
+                        <Link href="/signup" className="text-primary-600 hover:text-primary-500">
                             create a new account
                         </Link>
                     </p>
@@ -71,7 +71,7 @@ export default function SignInPage() {
 
                 <div className="bg-white py-8 px-6 shadow rounded-lg">
                     {error && (
-                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded">
                             {error}
                         </div>
                     )}

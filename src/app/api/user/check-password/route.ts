@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth.config';
 import { fetchUserWithEmail } from '@/app/_actions/users';
+import { authOptions } from '@/config/auth.config';
 
 export async function GET() {
     try {
