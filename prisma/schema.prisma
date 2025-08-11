@@ -45,3 +45,12 @@ model Admin {
   role          String?
   accessUrl     String?
 }
+
+model SidebarItem {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  label   String
+  href    String
+  order   Int     @default(0)
+  enabled Boolean @default(true)
+  icon    String?
+}

@@ -9,6 +9,33 @@ export async function fetchAdminWithEmail(email: string) {
     });
 }
 
+export async function getSidebarItems() {
+    return db.sidebarItem.findMany({
+        orderBy: { order: 'asc' },
+    });
+}
+
+export async function createSidebarItem(data: {
+    label: string;
+    href: string;
+    order?: number;
+    enabled?: boolean;
+    icon?: string;
+}) {
+    return db.sidebarItem.create({ data });
+}
+
+export async function updateSidebarItem(
+    id: string,
+    data: Partial<{ label: string; href: string; order: number; enabled: boolean; icon: string }>,
+) {
+    return db.sidebarItem.update({ where: { id }, data });
+}
+
+export async function deleteSidebarItem(id: string) {
+    return db.sidebarItem.delete({ where: { id } });
+}
+
 export async function createAdmin(data: {
     name: string;
     email: string;

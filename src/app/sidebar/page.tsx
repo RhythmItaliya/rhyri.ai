@@ -1,9 +1,5 @@
-'use client';
+import Sidebar, { SidebarItem } from './Sidebar';
 
-import dynamic from 'next/dynamic';
-
-const Sidebar = dynamic(() => import('./Sidebar'), { ssr: false });
-
-export default function SidebarPage() {
-    return <Sidebar />;
+export default function SidebarPage({ items }: { items: SidebarItem[] }) {
+    return <Sidebar items={items} />;
 }
