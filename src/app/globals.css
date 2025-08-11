@@ -4,16 +4,19 @@
     --color-background: #ffffff;
     --color-foreground: #0f172a;
 
-    --color-primary-50: #f3f0ff;
-    --color-primary-100: #e8e0ff;
-    --color-primary-200: #d3c4ff;
-    --color-primary-300: #b79eff;
-    --color-primary-400: #9a79fb;
-    --color-primary-500: #8055f7;
+    --color-primary-500: #7c66f5;
     --color-primary-600: #673de6;
     --color-primary-700: #5333c7;
-    --color-primary-800: #3e28a3;
-    --color-primary-900: #2b1e7f;
+
+    --color-success-50: #e8f5e9;
+    --color-success-200: #a5d6a7;
+    --color-success-700: #388e3c;
+
+    --color-error-50: #ffebee;
+    --color-error-200: #ef9a9a;
+    --color-error-500: #f44336;
+    --color-error-600: #e53935;
+    --color-error-700: #d32f2f;
 }
 
 body {
